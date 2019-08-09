@@ -1,0 +1,48 @@
+CREATE DATABASE T_SSolve
+
+USE	T_SSOLVE
+
+CREATE TABLE  Empresa
+(
+	IdEmpresa		INT PRIMARY KEY IDENTITY
+	,NomeFantasia	VARCHAR(255) NOT NULL
+	,CNPJ			VARCHAR(20) NOT NULL UNIQUE
+	,RazaoSocial	VARCHAR(255) NOT NULL UNIQUE
+	,Endereco		VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Tipo_De_Serviço
+(
+	IdTipoServiço	INT PRIMARY KEY IDENTITY
+	,TipoServiço	VARCHAR(255) NOT NULL 
+);
+
+CREATE TABLE Comodos
+(
+	IdComodos		INT PRIMARY KEY IDENTITY
+	,Comodos		VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Funcionario
+(
+	IdFuncionario	INT PRIMARY KEY IDENTITY
+	,Funcionario	VARCHAR(150) NOT NULL 
+);
+
+CREATE TABLE Serviços
+(
+	IdServiço		INT PRIMARY KEY IDENTITY
+	,Preço			MONEY 
+	,Descricao		VARCHAR(255)
+	,Inicio			VARCHAR(255)
+	,Final			VARCHAR(255)
+	,IdTipoServiço	INT FOREIGN KEY REFERENCES Tipo_De_Serviço(IdTipoServiço)  
+	,IdComodo		INT FOREIGN KEY REFERENCES Comodos (IdComodos)
+	,IdEmpresa		INT FOREIGN KEY REFERENCES Empresa (IdEmpresa)
+);
+
+CREATE TABLE Serviço_Funcionario
+(
+	IdServiço		INT FOREIGN KEY REFERENCES Serviços(IdServiço)
+	,IdFuncionario	INT FOREIGN KEY REFERENCES Funcionario(IdFuncionario)
+);
