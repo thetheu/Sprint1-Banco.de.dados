@@ -1,0 +1,42 @@
+CREATE DATABASE T_OpFlix
+
+USE T_OpFlix
+
+CREATE TABLE Categoria
+(
+	IdCategoria		INT PRIMARY KEY IDENTITY
+	,Nome			VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE TipoUsuario
+(
+	IdTipo			INT PRIMARY KEY IDENTITY
+	,Tipo			VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE Identificacao
+(
+	IdIdentificacao	INT PRIMARY KEY IDENTITY
+	,Nome			VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Usuario
+(
+	IdUsuario		INT PRIMARY KEY IDENTITY
+	,Nome			VARCHAR(255) NOT NULL
+	,Email			VARCHAR(255) NOT NULL UNIQUE
+	,Senha			VARCHAR(255) NOT NULL UNIQUE
+	,IdTipo			INT FOREIGN KEY REFERENCES TipoUsuario (IdTipo)
+);
+
+CREATE TABLE FilmeSeries
+(
+	IdFS			INT PRIMARY KEY IDENTITY
+	,Titulo			VARCHAR(255) NOT NULL UNIQUE
+	,DataLancamento	DATE
+	,IdCategoria	INT FOREIGN KEY REFERENCES Categoria(IdCategoria)
+	,IdIdentificacao INT FOREIGN KEY REFERENCES Identificacao(IdIdentificacao)
+	,Sinopse		VARCHAR(255) NOT NULL UNIQUE
+	,TempoDuracao	INT NOT NULL
+);
+
