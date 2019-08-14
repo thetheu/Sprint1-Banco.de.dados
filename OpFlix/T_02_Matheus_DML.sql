@@ -28,7 +28,8 @@ INSERT INTO Usuario (Nome, Email, Senha, IdTipo) VALUES ('Erik', 'erik@email.com
 														,('Cassiana', 'cassiana@email.com', '123456', 1)
 														,('Helena', 'helena@email.com', '123456', 2)
 														,('Roberto', 'rob@email.com', '3110', 2);
-
+delete Usuario
+where IdUsuario = '12'
 
 
 SELECT * FROM FilmeSeries
@@ -40,3 +41,56 @@ INSERT INTO FilmeSeries (Titulo, Sinopse, TempoDuracao, DataLancamento, Veiculo,
 
 DELETE FilmeSeries  
 WHERE IdFS = 1
+
+
+--Desafios--
+
+
+--- Incluir uma imagem para cada usuário cadastrado;
+ALTER TABLE Usuario ADD Foto IMAGE;
+SELECT * FROM Usuario
+INSERT INTO Usuario (Nome, Email, Senha, IdTipo, Foto) VALUES ('Erik', 'erik@email.com', '123456', 1, 'Foto_1.jpeg')
+														,('Cassiana', 'cassiana@email.com', '123456', 1, 'Foto_2.jpeg')
+														,('Helena', 'helena@email.com', '123456', 2, 'Foto_3.jpeg')
+														,('Roberto', 'rob@email.com', '3110', 2, 'Foto_4.jpeg');
+
+
+-- Atualizar o usuário Helena para administrador;
+SELECT * FROM Usuario
+
+UPDATE Usuario
+SET IdTipo = 1
+WHERE IdUsuario = 17
+
+--- Alterar La Casa De Papel 3 temp para La Casa De Papel - 3º Temporada;
+SELECT * FROM FilmeSeries
+
+UPDATE FilmeSeries
+SET Titulo = 'La Casa De Papel - 3º Temporada'
+WHERE Titulo = 'La Casa De Papel 3 temp'
+
+--- Atualizar data de lançamento do filme O Rei Leão para a data de lançamento da animação original, 08/07/1994, e alterar veiculo para VHS;
+SELECT * FROM FilmeSeries
+
+UPDATE FilmeSeries
+SET DataLancamento = '08/07/1994'
+WHERE Titulo = 'O Rei Leão'
+
+--- Inserir 3 filmes que estão atualmente no cinema;
+SELECT * FROM FilmeSeries
+
+INSERT INTO FilmeSeries (Titulo, Sinopse, TempoDuracao, DataLancamento, Veiculo, IdCategoria, IdClassificacao, IdIdentificacao)
+	VALUES ('Annabelle 3: De Volta Para Casa', 'Os investigadores paranormais Ed e Lorraine Warren mantêm a boneca Annabelle trancada em uma sala de artefatos em sua casa. No entanto, em uma noite terrível, Annabelle desperta outros espíritos malignos e ameaça a jovem filha do casal e suas amigas.', '106', '26/06/2019', 'Cinema', '2', '4', '1')
+		  ,('Homem-Aranha: Longe de Casa', 'Peter Parker está em uma viagem de duas semanas pela Europa, ao lado de seus amigos de colégio, quando é surpreendido pela visita de Nick Fury. Convocado para mais uma missão heróica, ele precisa enfrentar vários vilões que surgem em cidades-símbolo do continente, como Londres, Paris e Veneza, e também a aparição do enigmático Mysterio.', '130', '04/07/2019', 'Cinema', '10', '2', '1')
+		  ,('Turma Da Monica - Laços', 'Floquinho, o cachorro do Cebolinha, desapereceu. Ele desenvolve um plano infalível para resgatar o cãozinho, mas para isso vai precisar da ajuda de seus fieis amigos: Mônica, Magali e Cascão. Juntos, eles irão enfrentar desafios e viver grandes aventuras para levar Floquinho de volta para casa.', '96', '07/06/2019', 'Cinema', '4', '1', '1')
+
+
+
+
+--- Inserir as categorias: Terror, Ação, Comédia, Documentário, Drama e Ficção Científica.
+SELECT * FROM Categoria
+
+INSERT INTO Categoria (Nome) VALUES ('Terror'), ('Ação'), ('Documetário'), ('Drama'), ('Ficção Científica')
+
+
+
