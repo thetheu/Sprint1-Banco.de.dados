@@ -76,6 +76,10 @@ UPDATE FilmeSeries
 SET DataLancamento = '08/07/1994'
 WHERE Titulo = 'O Rei Leão'
 
+UPDATE FilmeSeries
+SET Veiculo = 'VHS'
+WHERE TITULO = 'O Rei Leão'
+
 --- Inserir 3 filmes que estão atualmente no cinema;
 SELECT * FROM FilmeSeries
 
